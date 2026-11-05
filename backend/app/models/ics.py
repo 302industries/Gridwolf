@@ -22,7 +22,8 @@ import enum
 
 
 def utcnow():
-    return datetime.now(timezone.utc)
+    # ICS columns use timezone-naive timestamps; store UTC values.
+    return datetime.now(timezone.utc).replace(tzinfo=None)
 
 
 def genuuid():
